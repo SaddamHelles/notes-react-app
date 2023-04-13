@@ -1,10 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { nanoid } from "nanoid";
 import NotesList from "./components/NotesList";
 import Search from "./components/Search";
 import Header from "./components/Header";
+import CustomDialog from "./components/popup/Dialog";
+import DataContext from "./context/contextDialog";
 
 const App = () => {
+  const ctxDialog = useContext(DataContext)
+
+
   const [darkMode, setDarkMode] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [notes, setNotes] = useState([
@@ -68,6 +73,9 @@ const App = () => {
   return (
     <div className={`${darkMode && "dark-mode"}`}>
       <div className="container">
+        {/* <CustomDialog />
+        <button onClick={() => ctxDialog.openHandler()} >Add DX</button> */}
+
         <Header handleToggleDarkMode={setDarkMode} />
         <Search handleSearchNote={setSearchText} />
         <NotesList
